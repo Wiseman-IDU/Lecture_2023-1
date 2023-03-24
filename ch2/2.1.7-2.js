@@ -1,7 +1,17 @@
+const condition = true; // true면 resolve, false면 reject
+const promise = new Promise((resolve, reject) => {
+  if (condition) {
+    resolve('성공');
+  } else {
+    reject('실패');
+  }
+});
 promise
   .then((message) => {
+    console.log(message + '1');
     return new Promise((resolve, reject) => {
-      resolve(message);
+      // resolve(message);
+      reject(message + '2');
     });
   })
   .then((message2) => {
@@ -15,5 +25,5 @@ promise
   })
 
   .catch((error) => {
-    console.error(error);
+    console.error(error + 'error');
   });
