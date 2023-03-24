@@ -22,12 +22,13 @@ console.time('시간측정');
 for (let i = 0; i < 100000; i++) {}
 console.timeEnd('시간측정');
 
-function b() {
-  console.trace('에러 위치 추적');
-}
-function a() {
-  b();
-}
-a();
+// function b() {
+//   console.trace('에러 위치 추적');
+// }
+// function a() {
+//   b();
+// }
+// a();
+(() => (() => console.trace('에러 위치 추적'))())();
 
 console.timeEnd('전체시간');
