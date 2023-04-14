@@ -45,14 +45,22 @@ const upload = multer({
     },
   }),
   limits: { fileSize: 5 * 1024 * 1024 },
+
 });
 app.get('/upload', (req, res) => {
   res.sendFile(path.join(__dirname, 'multipart.html'));
 });
-app.post('/upload', upload.single('image'), (req, res) => {
+// app.post('/upload', upload.single('image'), (req, res) => {
+//   console.log(req.file);
+//   res.send('ok');
+// });
+app.post('/upload',
+  upload.fields([{name: 'image1'}, {name: 'image2'}]),
+  (req, res) => {
   console.log(req.file);
   res.send('ok');
-});
+  },
+);
 
 app.get('/', (req, res, next) => {
   console.log('GET / 요청에서만 실행됩니다.');

@@ -1,0 +1,18 @@
+openssl genrsa -out rootCA.key 2048
+openssl req -new -key rootCA.key -out rootCA.csr
+[
+    Country Name : KR
+    State or Province Name : Seoul
+    Locality Name : Seoul
+    Organizaiton Name : induk
+    Organization Unit Name : induk
+    Common Name : 127.0.0.1
+    Email Address : My Email Address
+    Password : option(생략)
+]
+openssl x509 -req -in rootCA.csr -signkey rootCA.key -out rootCA.crt
+
+openssl genrsa -out server.key 2048
+openssl genrsa -new -key server.key -out server.csr
+openssl req -new -key server.key -out server.csr
+openssl x509 -req -in server.csr -CA rootCA.crt -CAkey rootCA.key -CAcreateserial -out server.crt
