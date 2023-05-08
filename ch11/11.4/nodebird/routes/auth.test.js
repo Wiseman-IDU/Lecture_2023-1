@@ -20,7 +20,7 @@ describe('POST /join', () => {
   });
 });
 
-describe('POST /login', () => {
+describe('POST /join', () => {
   const agent = request.agent(app);
   beforeEach((done) => {
     agent
@@ -55,7 +55,7 @@ describe('POST /login', () => {
         email: 'zerohch1@gmail.com',
         password: 'nodejsbook',
       })
-      .expect('Location', `/?loginError=${message}`)
+      .expect('Location', `/?error=${message}`)
       .expect(302, done);
   });
 
@@ -78,7 +78,7 @@ describe('POST /login', () => {
         email: 'zerohch0@gmail.com',
         password: 'wrong',
       })
-      .expect('Location', `/?loginError=${message}`)
+      .expect('Location', `/?error=${message}`)
       .expect(302, done);
   });
 });

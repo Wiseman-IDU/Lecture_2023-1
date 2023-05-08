@@ -8,6 +8,7 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 
 dotenv.config();
+
 const v1 = require('./routes/v1');
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes');
@@ -52,7 +53,7 @@ app.use('/auth', authRouter);
 app.use('/', indexRouter);
 
 app.use((req, res, next) => {
-  const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
+  const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
   error.status = 404;
   next(error);
 });

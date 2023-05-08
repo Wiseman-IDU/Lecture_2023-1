@@ -1,10 +1,9 @@
 {
   "development": {
-    "username": "indukcs",
-    "password": "!indukcs2023",
-    "database": "indukcs",
-    "host": "121.137.89.193",
-    "port": "53306",
+    "username": "root",
+    "password": null,
+    "database": "database_development",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {

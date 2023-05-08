@@ -20,7 +20,7 @@ describe('POST /join', () => {
   });
 });
 
-describe('POST /login', () => {
+describe('POST /join', () => {
   const agent = request.agent(app);
   beforeEach((done) => {
     agent
@@ -55,7 +55,7 @@ describe('POST /login', () => {
         email: 'zerohch1@gmail.com',
         password: 'nodejsbook',
       })
-      .expect('Location', `/?loginError=${message}`)
+      .expect('Location', `/?error=${message}`)
       .expect(302, done);
   });
 
@@ -70,7 +70,7 @@ describe('POST /login', () => {
       .expect(302, done);
   });
 
-  test('비밀번호 틀림', (done) => {
+  test('비밀번호 틀림',  (done) => {
     const message = encodeURIComponent('비밀번호가 일치하지 않습니다.');
     request(app)
       .post('/auth/login')
@@ -78,7 +78,7 @@ describe('POST /login', () => {
         email: 'zerohch0@gmail.com',
         password: 'wrong',
       })
-      .expect('Location', `/?loginError=${message}`)
+      .expect('Location', `/?error=${message}`)
       .expect(302, done);
   });
 });
@@ -102,7 +102,6 @@ describe('GET /logout', () => {
   });
 
   test('로그아웃 수행', (done) => {
-    const message = encodeURIComponent('비밀번호가 일치하지 않습니다.');
     agent
       .get('/auth/logout')
       .expect('Location', `/`)
