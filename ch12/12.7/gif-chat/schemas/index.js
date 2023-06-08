@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const { MONGO_ID, MONGO_PASSWORD, NODE_ENV } = process.env;
-const MONGO_URL = `mongodb://${MONGO_ID}:${MONGO_PASSWORD}@localhost:27017/admin`;
+const MONGO_URL = `mongodb://localhost:27017/admin`; // mongodb://localhost:27017
+// const MONGO_URL = `mongodb://${MONGO_ID}:${MONGO_PASSWORD}@localhost:27017/admin`;
 console.log(MONGO_URL);
 const connect = () => {
   if (NODE_ENV !== 'production') {
@@ -10,10 +11,13 @@ const connect = () => {
   mongoose.connect(MONGO_URL, {
     dbName: 'gifchat',
     useNewUrlParser: true,
-  }).then(() => {
-    console.log("몽고디비 연결 성공");
-  }).catch((err) => {
-    console.error("몽고디비 연결 에러", err);
+    useCreateIndex: true,
+  }, (error) => {
+    if (error) {
+      console.log('몽고디비 연결 에러', error);
+    } else {
+      console.log('몽고디비 연결 성공');
+    }
   });
 };
 
